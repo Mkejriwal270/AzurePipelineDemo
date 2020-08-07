@@ -8,16 +8,15 @@ title = "TODO with Flask"
 heading = "ToDo Reminder"
 
 ##Un-Comment when running against the Cosmos DB Emulator
-uri = "mongodb://milind:47S4iS1wspnDTpN0ZyXKBDpiqS2j4FuZl16lQmRVGk6lF6gutlwf0nvf5PGKepfSs7MX5lXCZZvZeoWAMpPZfQ==@milind.mongo.cosmos.azure.com:10255/?ssl=true&replicaSet=globaldb"
-client = MongoClient(uri)
+##uri = "mongodb://milind:47S4iS1wspnDTpN0ZyXKBDpiqS2j4FuZl16lQmRVGk6lF6gutlwf0nvf5PGKepfSs7MX5lXCZZvZeoWAMpPZfQ==@milind.mongo.cosmos.azure.com:10255/?ssl=true&replicaSet=globaldb"
+##client = MongoClient(uri)
 #client = MongoClient("mongodb://milind:47S4iS1wspnDTpN0ZyXKBDpiqS2j4FuZl16lQmRVGk6lF6gutlwf0nvf5PGKepfSs7MX5lXCZZvZeoWAMpPZfQ==@milind.mongo.cosmos.azure.com:10255/?ssl=true&replicaSet=globaldb&retrywrites=false&maxIdleTimeMS=120000&appName=@milind@") #host uri
+##db = client.test    #Select the database
+##db.authenticate(name="milind",password='47S4iS1wspnDTpN0ZyXKBDpiqS2j4FuZl16lQmRVGk6lF6gutlwf0nvf5PGKepfSs7MX5lXCZZvZeoWAMpPZfQ==')
+#Comment out when running locally
+client = MongoClient(os.getenv("MONGOURL"))
 db = client.test    #Select the database
-db.authenticate(name="milind",password='47S4iS1wspnDTpN0ZyXKBDpiqS2j4FuZl16lQmRVGk6lF6gutlwf0nvf5PGKepfSs7MX5lXCZZvZeoWAMpPZfQ==')
-
-## Comment out when running locally
-# client = MongoClient(os.getenv("MONGOURL"))
-# db = client.test    #Select the database
-# db.authenticate(name=os.getenv("MONGO_USERNAME"),password=os.getenv("MONGO_PASSWORD"))
+db.authenticate(name=os.getenv("MONGO_USERNAME"),password=os.getenv("MONGO_PASSWORD"))
 todos = db.todo #Select the collection
 
 def redirect_url():
