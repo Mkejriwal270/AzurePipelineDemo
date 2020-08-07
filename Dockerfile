@@ -1,7 +1,7 @@
-FROM python:alpine3.7 
+FROM python:3.7-windowsservercore
 COPY . /app
 WORKDIR /app
-RUN pip install -r requirements.txt 
-EXPOSE 5001 
-ENTRYPOINT [ "python" ] 
-CMD [ "demo.py" ]
+RUN pip install -r requirements.txt
+EXPOSE 5000
+ENTRYPOINT [ "python" ]
+CMD [ "app.py" ]
